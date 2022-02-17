@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { routerApi, routerViews } = require('./routes');
+const { routerApi } = require('./routes');
 
 const {
 	logErrors,
@@ -15,8 +15,8 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
-// Access whitelist
-const whitelist = ['http://localhost:3000'];
+// // Access whitelist
+// const whitelist = ['http://localhost:3000'];
 
 // CORS options
 const options = {
@@ -34,18 +34,16 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cors(options));
 app.use(cors());
 
-app.use('/uploads', express.static('uploads'));
+// app.use('/uploads', express.static('uploads'));
 
-// Configurando el motor de plantillas
-app.set('views', './views')
-app.set('view engine', 'ejs');
+
 
 // Routes
 routerApi(app);
 
 // Middlewares
 app.use(logErrors);
-app.use(ormErrorHandler);
+// app.use(ormErrorHandler);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 

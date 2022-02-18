@@ -1,10 +1,8 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const { USER_TABLE } = require('./user.model');
+const CATEGORY_TABLE = 'category';
 
-const CART_TABLE = 'cart';
-
-const CartSchema = {
+const CategorySchema = {
 	id: {
 		allowNull: false,
 		autoIncrement: true,
@@ -12,20 +10,15 @@ const CartSchema = {
 		type: DataTypes.INTEGER,
 	},
 
-	total_amount: {
+	name: {
 		allowNull: false,
-		type: DataTypes.FLOAT,
+		unique: true,
+		type: DataTypes.STRING(50),
 	},
 
-	user_id: {
+	description: {
 		allowNull: false,
-		type: DataTypes.INTEGER,
-		unique: true,
-		references: {
-			model: USER_TABLE,
-			key: 'id',
-		},
-		onUpdate: 'CASCADE',
+		type: DataTypes.TEXT,
 	},
 
 	createdAt: {
@@ -36,26 +29,31 @@ const CartSchema = {
 	},
 };
 
-class Cart extends Model {
+class Category extends Model {
 	static associate(models) {
-		this.hasMany(models.CartItem, {
-			as: 'cart_item',
-			foreignKey: 'cart_id'
+		this.hasMany(models.Product, {
+			as: 'product',
+			foreignKey: 'category_id'
+		});
+
+		this.hasMany(models.ProductLog, {
+			as: 'product_log',
+			foreignKey: 'category_id'
 		});
 	};
 
 	static config(sequelize) {
 		return {
 			sequelize,
-			tableName: CART_TABLE,
-			modelName: 'Cart',
+			tableName: CATEGORY_TABLE,
+			modelName: 'Category',
 			timestamps: false,
 		};
 	};
 };
 
 module.exports = {
-	CART_TABLE,
-	CartSchema,
-	Cart,
+	CATEGORY_TABLE,
+	CategorySchema,
+	Category,
 };

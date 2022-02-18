@@ -1,10 +1,8 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const { USER_TABLE } = require('./user.model');
+const INVENTORY_TABLE = 'inventory';
 
-const CART_TABLE = 'cart';
-
-const CartSchema = {
+const InventorySchema = {
 	id: {
 		allowNull: false,
 		autoIncrement: true,
@@ -12,20 +10,9 @@ const CartSchema = {
 		type: DataTypes.INTEGER,
 	},
 
-	total_amount: {
-		allowNull: false,
-		type: DataTypes.FLOAT,
-	},
-
-	user_id: {
+	quantity: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		unique: true,
-		references: {
-			model: USER_TABLE,
-			key: 'id',
-		},
-		onUpdate: 'CASCADE',
 	},
 
 	createdAt: {
@@ -36,26 +23,31 @@ const CartSchema = {
 	},
 };
 
-class Cart extends Model {
+class Inventory extends Model {
 	static associate(models) {
-		this.hasMany(models.CartItem, {
-			as: 'cart_item',
-			foreignKey: 'cart_id'
+		this.hasOne(models.Product, {
+			as: 'product',
+			foreignKey: 'inventory_id'
+		});
+
+		this.hasMany(models.ProductLog, {
+			as: 'product_log',
+			foreignKey: 'inventory_id'
 		});
 	};
 
 	static config(sequelize) {
 		return {
 			sequelize,
-			tableName: CART_TABLE,
-			modelName: 'Cart',
+			tableName: INVENTORY_TABLE,
+			modelName: 'Inventory',
 			timestamps: false,
 		};
 	};
 };
 
 module.exports = {
-	CART_TABLE,
-	CartSchema,
-	Cart,
+	INVENTORY_TABLE,
+	InventorySchema,
+	Inventory,
 };

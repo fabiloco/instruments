@@ -86,6 +86,11 @@ class User extends Model {
 			as: 'order_historial',
 			foreignKey: 'user_id'
 		});
+
+		this.hasMany(models.CartItemLog, {
+			as: 'cart_item_log',
+			foreignKey: 'user_id'
+		});
 	};
 
 	static config(sequelize) {

@@ -1,14 +1,19 @@
 // const { Book, BookSchema } = require('./book.model');
 
 const { User, UserSchema } = require('./user.model');
-
 const { Country, CountrySchema } = require('./country.model');
 const { State, StateSchema } = require('./state.model');
 const { Address, AddressSchema } = require('./address.model');
 const { Payment, PaymentSchema } = require('./payment.model');
 const { Cart, CartSchema } = require('./cart.model');
-const { PaymentDetails, PaymentDetailsSchema } = require('./payment_details.model');
-const { OrderHistorial, OrderHistorialSchema } = require('./order_historial.model');
+const {
+	PaymentDetails,
+	PaymentDetailsSchema,
+} = require('./payment_details.model');
+const {
+	OrderHistorial,
+	OrderHistorialSchema,
+} = require('./order_historial.model');
 const { Category, CategorySchema } = require('./category.model');
 const { Discount, DiscountSchema } = require('./discount.model');
 const { Inventory, InventorySchema } = require('./inventory.model');

@@ -14,6 +14,7 @@ interface AuthProviderProps {
 }
 
 export interface UserData {
+    state: string;
 	id: number;
 	user_name: string;
 	first_name1: string;
@@ -45,19 +46,21 @@ export const AuthProvider = (props: AuthProviderProps) => {
 			console.log(res);
 			if (res) {
 				setAuthState({
-					id: res.id,
-                    user_name: res.user_name,
-                    first_name1: res.first_name1,
-                    first_name2: res.first_name2,
-                    last_name1: res.last_name1,
-                    last_name2: res.last_name2,
-                    email: res.email,
-                    img_profile: res.img_profile,
-                    phone: res.phone,
-                    createdAt: res.createdAt,
+                    state: 'auth',
+					id: res.user.id,
+                    user_name: res.user.user_name,
+                    first_name1: res.user.first_name1,
+                    first_name2: res.user.first_name2,
+                    last_name1: res.user.last_name1,
+                    last_name2: res.user.last_name2,
+                    email: res.user.email,
+                    img_profile: res.user.img_profile,
+                    phone: res.user.phone,
+                    createdAt: res.user.createdAt,
 				});
 			} else {
 				setAuthState({
+                    state: 'notAuth',
 					id: 0,
                     user_name: "",
                     first_name1: "",

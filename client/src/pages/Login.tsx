@@ -9,10 +9,14 @@ import {
     Spinner,
     Stack,
     Text,
+	useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../services/authService";
+
+import { useCookies } from "react-cookie";
 
 interface LoginUserState {
     username: string;
@@ -21,6 +25,12 @@ interface LoginUserState {
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
+
+	const navigate = useNavigate();
+
+	const toast = useToast();
+
+	const [, setCookie] = useCookies(["user-token"]);
 
     const [user, setUser] = useState<LoginUserState>({
         username: "",
@@ -34,9 +44,24 @@ const Login = () => {
         });
     };
 
-    const handleOnSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleOnSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("sending form", user);
+        e.preventDefault();
+		setLoading(true);
+		const token = await login(user);
+		setLoading(false);
+		if (token) {
+			setCookie("user-token", token);
+			navigate("/profile");
+		} else {
+			toast({
+				title: "Algo ha salido mal",
+				description: "Usuario y/o contraseña incorrectos",
+				status: "error",
+				duration: 9000,
+				isClosable: true,
+			});
+		}
     };
 
     return (
@@ -99,7 +124,7 @@ const Login = () => {
 										bg={"#FFA341"}
 										color={"white"}
 										_hover={{
-											bg: "blue.500",
+											bg: "yellow.600",
 										}}
 									>
 										{loading ? (

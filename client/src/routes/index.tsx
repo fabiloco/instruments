@@ -1,4 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
+import { AuthProvider } from "../components/GlobalState";
+
 import Layout from "../components/Layout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -8,18 +12,44 @@ import Products from "../pages/Products";
 import Register from "../pages/Register";
 
 const Router = () => {
+    const [cookies] = useCookies(["user-token"]);
+
     return (
         <BrowserRouter>
             <Routes>
-				<Route element={<Layout />} >
-                	<Route path="/" element={<Home />} />
-					<Route path="/products" element={<Products />} />
-					<Route path="/product" element={<Product />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
-				</Route>
+                <Route
+                    element={
+                        <AuthProvider>
+                            <Layout />
+                        </AuthProvider>
+                    }
+                >
+                    <Route path="/" element={<Home />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/product" element={<Product />} />
+                    <Route
+                        path="/login"
+                        element={
+                            cookies["user-token"] ? (
+                                <Navigate to="/" />
+                            ) : (
+                                <Login />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/register"
+                        element={
+                            cookies["user-token"] ? (
+                                <Navigate to="/" />
+                            ) : (
+                                <Register />
+                            )
+                        }
+                    />
+                </Route>
 
-				<Route path="*" element={<NotFound />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );

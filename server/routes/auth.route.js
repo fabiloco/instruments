@@ -3,8 +3,11 @@ const passport = require('passport');
 
 const jwt = require('jsonwebtoken');
 const { config } = require('../config/config');
+const UserService = require('../services/user.service');
 
 const router = express.Router();
+
+const service = new UserService();
 
 // Create a user
 router.post('/login',
@@ -20,6 +23,23 @@ router.post('/login',
 				user: req.user,
 				token,
 			});
+		}catch(error) {
+			next(error);
+		};
+	},
+);
+
+// is auth
+router.get('/',
+	async (req, res, next) => {
+		try {
+			const token = req.headers.authorization.substring(7);
+			const payload = jwt.verify(token, config.secret);
+			const userId = payload.sub;
+
+			const user = await service.findOne(userId);
+
+			res.json({ user, });
 		}catch(error) {
 			next(error);
 		};

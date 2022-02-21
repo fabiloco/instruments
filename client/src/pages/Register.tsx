@@ -67,7 +67,6 @@ const Register = () => {
 			};
 	
 			const token = await login(user);
-			console.log(token);
 			setLoading(false);
 
 			if (token) {

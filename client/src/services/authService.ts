@@ -40,3 +40,15 @@ export const register = async (user: RegisterUserState) => {
         return false;
 	}
 };
+
+export const isAuthenticated = async (token: string) => {
+	try {
+		const res = await axios.get(`${config.API_URL}/api/v1/auth`, {
+            headers: config.headersWithAuth(token),
+		});
+        return res.data;
+	} catch (err: any) {
+		console.log("Error fetching register: ", err.response);
+        return false;
+	}
+};

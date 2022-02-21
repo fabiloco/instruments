@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
+import logo from "../assets/logo.png";
+
 const Footer = () => {
 	return (
-		<footer className="p-4 bg-slate-100 rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-800 mt-32">
+		<footer className="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-800">
 			<div className="sm:flex sm:items-center sm:justify-between">
 				<a
 					href="https://flowbite.com"
@@ -10,7 +12,7 @@ const Footer = () => {
 					className="flex items-center mb-4 sm:mb-0"
 				>
 					<div className="font-bold text-xl mr-6">
-						💅 Logo
+						<img className="h-32" src={logo} alt="logo"/>
 					</div>
 				</a>
 				<ul className="flex flex-wrap items-center mb-6 sm:mb-0">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Avatar, Button, Input, InputGroup, InputRightAddon } from '@chakra-ui/react'
 
 import logo from "../assets/logo.png";
-import { FaBars, FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -64,7 +64,7 @@ const Navbar = () => {
 						Iniciar sesión
 					</Link>
 					<Link
-						className="hover:underline text-white mr-3 text-sm bg-yellow-400 px-3 py-2 rounded-md font-bold hover:bg-yellow-600 transition-colors"
+						className="hover:underline text-white mr-3 text-sm bg-[#FFA341] px-3 py-2 rounded-md font-bold hover:bg-yellow-600 transition-colors"
 						to="/register"
 					>
 						Registrarse

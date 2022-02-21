@@ -2,7 +2,7 @@ const express = require('express');
 const multer  = require('multer');
 
 const validatorHandler = require('../middlewares/validator.handler');
-const { getAddressSchema, createAddressSchema, updateAddressSchema } = require('../schemas/user.schema');
+const { getAddressSchema, createAddressSchema, updateAddressSchema, getAddressByUserIdSchema } = require('../schemas/address.schema');
 
 const AddressService = require('../services/address.service');
 
@@ -13,10 +13,16 @@ const service = new AddressService();
 
 // Get all addresses
 router.get('/',
+	validatorHandler(getAddressByUserIdSchema, 'body'),
 	async (req, res, next) => {
 		try {
-			const addresses = await service.find();
-			res.json(addresses);
+			if (req.body.user_id) {
+				const addresses = await service.findByUser(req.body.user_id);
+				res.json(addresses);
+			} else {
+				const addresses = await service.find();
+				res.json(addresses);
+			}
 		} catch(error) {
 			next(error);
 		};

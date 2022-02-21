@@ -1,15 +1,13 @@
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequilize');
 
-class UserService {
+class AddressService {
 	constructor() {
-		this.usersModel = models.User;
+		this.usersModel = models.Address;
 	};
 
 	async find() {
-		const users = await this.usersModel.findAll({
-			include: ['address']
-		});
+		const users = await this.usersModel.findAll();
 		return users;
 	};
 
@@ -18,13 +16,6 @@ class UserService {
 		if(!user) {
 			throw boom.notFound('user not found');
 		}
-		return user;
-	};
-
-	async findByUsername(username) {
-		const user = await this.usersModel.findOne({
-			where: { user_name: username }
-		});
 		return user;
 	};
 
@@ -47,4 +38,4 @@ class UserService {
 	};
 };
 
-module.exports = UserService;
+module.exports = AddressService;

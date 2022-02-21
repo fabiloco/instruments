@@ -1,5 +1,3 @@
-// const { Book, BookSchema } = require('./book.model');
-
 const { User, UserSchema } = require('./user.model');
 const { Country, CountrySchema } = require('./country.model');
 const { State, StateSchema } = require('./state.model');
@@ -24,9 +22,7 @@ const { CartItemLog, CartItemLogSchema } = require('./cart_item_log.model');
 const { ProductLog, ProductLogSchema } = require('./product_log.model');
 
 const setupModels = (sequilize) => {
-	// Book.init(BookSchema, Book.config(sequilize));
 	User.init(UserSchema, User.config(sequilize));
-
 	Country.init(CountrySchema, Country.config(sequilize));
 	State.init(StateSchema, State.config(sequilize));
 	Address.init(AddressSchema, Address.config(sequilize));

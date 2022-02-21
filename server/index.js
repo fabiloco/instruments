@@ -36,7 +36,8 @@ app.use(cors());
 
 app.use('/uploads', express.static('uploads'));
 
-
+// authentication
+require('./utils/auth');
 
 // Routes
 routerApi(app);

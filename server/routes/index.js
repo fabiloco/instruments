@@ -1,13 +1,15 @@
 const express = require('express');
 
-const booksRoute = require('./books.route');
 const usersRoute = require('./users.route');
+const authRoute = require('./auth.route');
+const addressesRoute = require('./addresses.route');
 
 const routerApi = (app) => {
 	const router = express.Router();
 	app.use('/api/v1', router);
-	router.use('/books', booksRoute);
-	router.use('/users', usersRoute);
+	router.use('/auth', authRoute);
+	router.use('/user', usersRoute);
+	router.use('/address', addressesRoute);
 };
 
 module.exports = { routerApi };

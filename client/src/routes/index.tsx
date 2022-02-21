@@ -10,6 +10,7 @@ import NotFound from "../pages/NotFound";
 import Product from "../pages/Product";
 import Products from "../pages/Products";
 import Register from "../pages/Register";
+import Profile from "../pages/Profile";
 
 const Router = () => {
     const [cookies] = useCookies(["user-token"]);
@@ -25,6 +26,7 @@ const Router = () => {
                     }
                 >
                     <Route path="/" element={<Home />} />
+                    <Route path="/products/:id" element={<Products />} />
                     <Route path="/products" element={<Products />} />
                     <Route path="/product" element={<Product />} />
                     <Route
@@ -47,6 +49,9 @@ const Router = () => {
                             )
                         }
                     />
+
+					<Route path="/profile" element={<Profile />} />
+
                 </Route>
 
                 <Route path="*" element={<NotFound />} />

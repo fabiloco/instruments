@@ -35,9 +35,11 @@ const AuthControls = (props: UserAuthProps) => {
 		return(
 			<div className="flex flex-col items-center justify-evenly h-full w-96">
 				<div className="flex items-center justify-between w-full px-12">
-					<button>
+					<Link
+						to={"/profile"}
+					>
 						<FaUser size={"22"}/>
-					</button>
+					</Link>
 					<button>
 						<FaShoppingCart size={"22"}/>
 					</button>
@@ -99,13 +101,35 @@ const Navbar = () => {
 					</Link>
 					<Link
 						className="hover:border-b-4 text-black mr-3 text-md border-b-black border-b-2 transition-all"
-						to="/"
+						to="/products"
 					>
-						Productos
+						Nuestros productos
 					</Link>
+
 					<Link
 						className="hover:border-b-4 text-black mr-3 text-md border-b-black border-b-2 transition-all"
-						to="/"
+						to="/products/1"
+					>
+						Guitarras electricas
+					</Link>
+
+					<Link
+						className="hover:border-b-4 text-black mr-3 text-md border-b-black border-b-2 transition-all"
+						to="/products/2"
+					>
+						Guitarras acusticas
+					</Link>
+
+					<Link
+						className="hover:border-b-4 text-black mr-3 text-md border-b-black border-b-2 transition-all"
+						to="/products/3"
+					>
+						Teclados
+					</Link>
+
+					<Link
+						className="hover:border-b-4 text-black mr-3 text-md border-b-black border-b-2 transition-all"
+						to="/profile"
 					>
 						Cuenta
 					</Link>

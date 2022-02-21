@@ -10,10 +10,10 @@ const {
 } = require('./middlewares/error.handler');
 
 const cors = require('cors');
+const { config } = require('./config/config');
 
 // Configuraciones
 const app = express();
-const port = 3000;
 
 // // Access whitelist
 // const whitelist = ['http://localhost:3000'];
@@ -48,6 +48,6 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-app.listen(port, () => {
-	console.log(`Server listening in http://localhost:${port}`);
+app.listen(config.port, () => {
+	console.log(`Server listening in http://localhost:${config.port}`);
 });

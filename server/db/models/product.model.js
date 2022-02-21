@@ -17,7 +17,6 @@ const ProductSchema = {
 	discount_id: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		unique: true,
 		references: {
 			model: DISCOUNT_TABLE,
 			key: 'id',
@@ -39,7 +38,6 @@ const ProductSchema = {
 	category_id: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		unique: true,
 		references: {
 			model: CATEGORY_TABLE,
 			key: 'id',
@@ -82,6 +80,21 @@ const ProductSchema = {
 
 class Product extends Model {
 	static associate(models) {
+		this.belongsTo(models.Category, {
+			as: 'category',
+			foreignKey: 'category_id'
+		});
+
+		this.belongsTo(models.Inventory, {
+			as: 'inventory',
+			foreignKey: 'inventory_id'
+		});
+
+		this.belongsTo(models.Discount, {
+			as: 'discount',
+			foreignKey: 'discount_id'
+		});
+
 		this.hasMany(models.CartItem, {
 			as: 'cart_item',
 			foreignKey: 'product_id'

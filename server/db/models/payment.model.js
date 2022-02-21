@@ -12,6 +12,11 @@ const PaymentSchema = {
 		type: DataTypes.INTEGER,
 	},
 
+	bank: {
+		allowNull: false,
+		type: DataTypes.STRING(50),
+	},
+
 	payment_type: {
 		allowNull: false,
 		type: DataTypes.STRING(50),
@@ -19,12 +24,12 @@ const PaymentSchema = {
 
 	card_number: {
 		allowNull: false,
-		type: DataTypes.INTEGER.UNSIGNED,
+		type: DataTypes.STRING(255),
 	},
 
 	expiry_date: {
 		allowNull: false,
-		type: DataTypes.DATE,
+		type: DataTypes.STRING(10),
 	},
 
 	user_id: {

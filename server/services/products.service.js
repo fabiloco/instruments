@@ -1,50 +1,53 @@
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequilize');
 
-class AddressService {
+class ProductsService {
 	constructor() {
-		this.usersModel = models.Address;
+		this.usersModel = models.Product;
 	};
 
 	async find() {
-		const users = await this.usersModel.findAll();
-		return users;
+		const products = await this.usersModel.findAll({
+			include: ['category', 'inventory', 'discount']
+		});
+		return products;
 	};
 
-	async findByUser(userId) {
-		const users = await this.usersModel.findAll({
+	async findByCategory(categoryId) {
+		const products = await this.usersModel.findAll({
 			where: {
-				user_id: userId,
-			}
+				category_id: categoryId,
+			},
+			include: ['category', 'inventory', 'discount']
 		});
-		return users;
+		return products;
 	};
 
 	async findOne(id) {
-		const user = await this.usersModel.findByPk(id);
-		if(!user) {
-			throw boom.notFound('user not found');
+		const product = await this.usersModel.findByPk(id);
+		if(!product) {
+			throw boom.notFound('product not found');
 		}
-		return user;
+		return product;
 	};
 
 	async create(data) {
-		const newUser = await this.usersModel.create(data);
-		return newUser.toJSON();
+		const newProduct = await this.usersModel.create(data);
+		return newProduct.toJSON();
 	};
 
 
 	async update(id, changes) {
-		const oldUser = await this.findOne(id);
-		const newUser = await oldUser.update(changes);
-		return newUser;
+		const oldProduct = await this.findOne(id);
+		const newProduct = await oldProduct.update(changes);
+		return newProduct;
 	};
 
 	async delete(id) {
-		const user = await this.findOne(id);
-		await user.destroy();
+		const product = await this.findOne(id);
+		await product.destroy();
 		return { id, };
 	};
 };
 
-module.exports = AddressService;
+module.exports = ProductsService;

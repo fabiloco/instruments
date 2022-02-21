@@ -46,6 +46,7 @@ const setupModels = (sequilize) => {
 	Country.associate(sequilize.models);
 	State.associate(sequilize.models);
 	User.associate(sequilize.models);
+	Address.associate(sequilize.models);
 	Category.associate(sequilize.models);
 	Discount.associate(sequilize.models);
 	Inventory.associate(sequilize.models);

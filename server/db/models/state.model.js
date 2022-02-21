@@ -30,11 +30,13 @@ const StateSchema = {
 
 class State extends Model {
 	static associate(models) {
-		this.hasOne(models.Address, {
+		this.hasMany(models.Address, {
 			as: 'address',
-			foreignKey: 'state_id'
+			foreignKey: 'state_id',
 		});
-	};
+
+		this.belongsTo(models.Country, { foreignKey: 'country_id' });
+	}
 
 	static config(sequelize) {
 		return {
@@ -43,8 +45,8 @@ class State extends Model {
 			modelName: 'State',
 			timestamps: false,
 		};
-	};
-};
+	}
+}
 
 module.exports = {
 	STATE_TABLE,

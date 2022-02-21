@@ -23,35 +23,21 @@ module.exports = {
 		await queryInterface.createTable(COUNTRY_TABLE, CountrySchema);
 		await queryInterface.createTable(STATE_TABLE, StateSchema);
 		await queryInterface.createTable(ADDRESS_TABLE, AddressSchema);
-		await queryInterface.createTable(PAYMENT_TABLE, PaymentSchema);
-		await queryInterface.createTable(CART_TABLE, CartSchema);
-		await queryInterface.createTable(PAYMENT_DETAILS_TABLE, PaymentDetailsSchema);
-		await queryInterface.createTable(ORDER_HISTORIAL_TABLE, OrderHistorialSchema);
-		await queryInterface.createTable(CATEGORY_TABLE, CategorySchema);
-		await queryInterface.createTable(DISCOUNT_TABLE, DiscountSchema);
-		await queryInterface.createTable(INVENTORY_TABLE, InventorySchema);
-		await queryInterface.createTable(PRODUCT_TABLE, ProductSchema);
-		await queryInterface.createTable(CART_ITEM_TABLE, CartItemSchema);
-		await queryInterface.createTable(ORDER_ITEM_TABLE, OrderItemSchema);
-		await queryInterface.createTable(CART_ITEM_LOG_TABLE, CartItemLogSchema);
-		await queryInterface.createTable(PRODUCT_LOG_TABLE, ProductLogSchema);
+		// await queryInterface.createTable(PAYMENT_TABLE, PaymentSchema);
+		// await queryInterface.createTable(CART_TABLE, CartSchema);
+		// await queryInterface.createTable(PAYMENT_DETAILS_TABLE, PaymentDetailsSchema);
+		// await queryInterface.createTable(ORDER_HISTORIAL_TABLE, OrderHistorialSchema);
+		// await queryInterface.createTable(CATEGORY_TABLE, CategorySchema);
+		// await queryInterface.createTable(DISCOUNT_TABLE, DiscountSchema);
+		// await queryInterface.createTable(INVENTORY_TABLE, InventorySchema);
+		// await queryInterface.createTable(PRODUCT_TABLE, ProductSchema);
+		// await queryInterface.createTable(CART_ITEM_TABLE, CartItemSchema);
+		// await queryInterface.createTable(ORDER_ITEM_TABLE, OrderItemSchema);
+		// await queryInterface.createTable(CART_ITEM_LOG_TABLE, CartItemLogSchema);
+		// await queryInterface.createTable(PRODUCT_LOG_TABLE, ProductLogSchema);
 	},
 
 	async down(queryInterface, Sequelize) {
-		await queryInterface.drop(USER_TABLE);
-		await queryInterface.drop(COUNTRY_TABLE);
-		await queryInterface.drop(STATE_TABLE);
-		await queryInterface.drop(ADDRESS_TABLE);
-		await queryInterface.drop(PAYMENT_TABLE);
-		await queryInterface.drop(CART_TABLE);
-		await queryInterface.drop(PAYMENT_DETAILS_TABLE);
-		await queryInterface.drop(ORDER_HISTORIAL_TABLE);
-		await queryInterface.drop(DISCOUNT_TABLE);
-		await queryInterface.drop(INVENTORY_TABLE);
-		await queryInterface.drop(PRODUCT_TABLE);
-		await queryInterface.drop(CART_ITEM_TABLE);
-		await queryInterface.drop(ORDER_ITEM_TABLE);
-		await queryInterface.drop(CART_ITEM_LOG_TABLE);
-		await queryInterface.drop(PRODUCT_LOG_TABLE);
+		await queryInterface.dropAllTables();
 	},
 };

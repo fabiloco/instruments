@@ -46,7 +46,6 @@ const AddressSchema = {
 	state_id: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		unique: true,
 		references: {
 			model: STATE_TABLE,
 			key: 'id',
@@ -57,7 +56,6 @@ const AddressSchema = {
 	user_id: {
 		allowNull: false,
 		type: DataTypes.INTEGER,
-		unique: true,
 		references: {
 			model: USER_TABLE,
 			key: 'id',
@@ -67,8 +65,8 @@ const AddressSchema = {
 };
 
 class Address extends Model {
-	static associate() {
-
+	static associate(models) {
+		this.belongsTo(models.User, { as: 'user', foreignKey: 'user_id' });
 	};
 
 	static config(sequelize) {

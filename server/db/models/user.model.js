@@ -67,7 +67,7 @@ const UserSchema = {
 
 class User extends Model {
 	static associate(models) {
-		this.hasOne(models.Address, {
+		this.hasMany(models.Address, {
 			as: 'address',
 			foreignKey: 'user_id'
 		});

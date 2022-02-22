@@ -40,6 +40,17 @@ export const getProducts = async () => {
 	}
 };
 
+export const getProductsWithDiscount = async () => {
+	try {
+		const res = await axios.get(`${config.API_URL}/api/v1/products/discount`, {
+			headers: config.headers,
+		});
+		return res.data;
+	} catch (err: any) {
+		console.log("Error fetching getProductsWithDiscount: ", err.response);
+	}
+};
+
 export const getProduct = async (id: string) => {
 	try {
 		const res = await axios.get(`${config.API_URL}/api/v1/products/${id}`, {

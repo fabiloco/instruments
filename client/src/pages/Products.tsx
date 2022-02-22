@@ -1,6 +1,7 @@
 import { Container, Grid, GridItem, Heading } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import ProductItem from "../components/ProductItem";
 import Pagination from "../components/shared/Pagination";
 import { getProductsByCategory } from "../services/productsService";
 
@@ -85,7 +86,7 @@ const Products = () => {
                         {productsState.products.map((element, i) => {
                             return (
                                 <GridItem key={i}>
-                                    <Product data={element} />
+                                    <ProductItem data={element} />
                                 </GridItem>
                             );
                         })}
@@ -96,37 +97,6 @@ const Products = () => {
                 </div> */}
             </Container>
         </div>
-    );
-};
-
-interface ProductProps {
-    data: Product;
-}
-
-const Product = (props: ProductProps) => {
-    return (
-        <Link to={`/product/${props.data.id}`}>
-            <div className="w-full bg-white border border-slate-100">
-				<img className="object-contain w-full h-64" src={props.data.img_url} alt={props.data.name}/>
-                <div className="flex flex-col p-4 justify-evenly h-36">
-                    <p className="mb-2 font-bold">{props.data.name}</p>
-                    <p className="mb-2 text-lg font-bold text-red-500">$ COP {props.data.price}</p>
-                    {
-                        props.data.inventory.quantity > 0 ?(
-                            <div className="flex items-center">
-                                <div className="block w-4 h-4 mr-2 bg-green-500 rounded-full"></div>
-                                <p className="font-bold text-green-500">Disponible</p>
-                            </div>
-                        ) : (
-                            <div className="flex">
-                                <div className="block w-4 h-4 bg-red-500 rounded-full"></div>
-                                <p className="font-bold text-red-500">Agotado</p>
-                            </div>
-                        )
-                    }
-                </div>
-			</div>
-        </Link>
     );
 };
 

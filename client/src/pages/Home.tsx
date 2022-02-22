@@ -1,13 +1,15 @@
-import { Container } from "@chakra-ui/react";
+import Carrousel from "../components/Carrousel";
+import Discount from "../components/Discount";
+import MostSelled from "../components/MostSelled";
 
 const Home = () => {
-	return (
-		<Container maxW="container.lg">
-			<div className="h-screen w-full flex justify-center items-center">
-				<p className="text-5xl opacity-50">🛒 ecommerce-template</p>
-			</div>
-		</Container>
-	);
+    return (
+        <div className="w-full pt-28">
+            <Carrousel />
+			<Discount />
+			<MostSelled />
+        </div>
+    );
 };
 
 export default Home;

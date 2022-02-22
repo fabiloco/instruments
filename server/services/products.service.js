@@ -13,6 +13,13 @@ class ProductsService {
 		return products;
 	};
 
+	async findDiscount() {
+		const products = await this.usersModel.sequelize.query("SELECT * FROM product WHERE product.discount_id in (SELECT discount.id FROM discount WHERE discount.is_active = true);", {
+			include: ['discount']
+		});
+		return products[0];
+	};
+
 	async findByCategory(categoryId) {
 		const products = await this.usersModel.findAll({
 			where: {

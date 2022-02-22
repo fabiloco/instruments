@@ -28,6 +28,20 @@ router.get(
 	}
 );
 
+// Get all products with discount
+router.get(
+	'/discount',
+	async (req, res, next) => {
+		try {
+			const products = await service.findDiscount();
+			res.json(products);
+		} catch (error) {
+			next(error);
+		}
+	}
+);
+
+
 // get all products by category id
 router.get(
 	'/by-category/:category_id',

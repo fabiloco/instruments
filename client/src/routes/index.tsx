@@ -50,7 +50,16 @@ const Router = () => {
                         }
                     />
 
-					<Route path="/profile" element={<Profile />} />
+                    <Route
+                        path="/profile"
+                        element={
+                            cookies["user-token"] ? (
+                                <Profile />
+                            ) : (
+                                <Navigate to="/login" />
+                            )
+                        }
+                    />
 
                 </Route>
 

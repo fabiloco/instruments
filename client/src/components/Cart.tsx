@@ -31,6 +31,8 @@ const Cart = (props: CartProps) => {
         loading: true,
     });
 
+    const [subTotal, setSubTotal] = useState<number>();
+
     const context = useContext(AuthContext);
 
     useEffect(() => {
@@ -74,6 +76,17 @@ const Cart = (props: CartProps) => {
 
         window.location.href = "/";
     };
+
+    useEffect(() => {
+        const updateSubtotal = () => {
+            let totalPrice = 0;
+            cartState.data.forEach((element) => {
+                totalPrice += element.product.price * element.quantity;
+            });
+            setSubTotal(totalPrice);
+        };
+        updateSubtotal();
+    }, [cartState]);
     
     return (
         <div
@@ -204,7 +217,7 @@ const Cart = (props: CartProps) => {
                             <div className="px-4 py-6 border-t border-gray-200 sm:px-6">
                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                     <p>Subtotal</p>
-                                    <p>$ COP {context?.shoppingSession?.total_amount}</p>
+                                    <p>$ COP {subTotal}</p>
                                 </div>
                                 
                                 <div className="mt-6">

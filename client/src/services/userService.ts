@@ -5,7 +5,7 @@ import { User } from "../components/EditProfile";
 import { config } from "../config";
 
 export const getUserDataById = async (userId: string) => {
-	console.log(userId);
+	// console.log(userId);
 	try {
 		const res = await axios.get(`${config.API_URL}/api/v1/user/${userId}`, {
 			headers: config.headers,
@@ -23,6 +23,7 @@ export const editUser = async (userId: string, body: User) => {
 
         delete body.id;
         delete body.createdAt;
+		delete body.img_profile;
 
         console.log(body);
 

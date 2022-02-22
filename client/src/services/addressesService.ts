@@ -20,7 +20,6 @@ export interface RegisterUserState {
 }
 
 export const getAddressByUser = async (userId: string) => {
-	console.log(userId);
 	try {
 		const res = await axios.get(`${config.API_URL}/api/v1/address/by-user/${userId}`, {
 			headers: config.headers,
@@ -43,7 +42,7 @@ export const deleteAddress = async (id: string) => {
 };
 
 export const createAddress = async (body: NewAddress) => {
-	console.log(body);
+	// console.log(body);
 	try {
 		const res = await axios.post(`${config.API_URL}/api/v1/address`, body, {
 			headers: config.headers,

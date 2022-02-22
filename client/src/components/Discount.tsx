@@ -76,16 +76,16 @@ const Discount = () => {
                                 </div>
                                 <div className="w-1/2 bg-white rounded-lg h-96">
                                     <Link
-                                        to={`/product/${discountState.data[1].id}`}
+                                        to={`/product/${discountState.data[2].id}`}
                                         className="relative flex justify-center w-full h-full"
                                     >
                                         <img
-                                            className="object-fit"
-                                            src={discountState.data[1].img_url}
-                                            alt={discountState.data[1].name}
+                                            className="object-contain"
+                                            src={discountState.data[2].img_url}
+                                            alt={discountState.data[2].name}
                                         />
                                         <p className="absolute text-xl bottom-4 opacity-60 bg-[#FFCF9B] p-3 rounded-lg">
-                                            {discountState.data[0].name}
+                                            {discountState.data[2].name}
                                         </p>
                                         <Badge
                                             className="absolute h-fit top-5 right-5"

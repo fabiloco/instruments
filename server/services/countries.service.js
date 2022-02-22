@@ -1,25 +1,13 @@
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequilize');
 
-class AddressService {
+class CountryService {
 	constructor() {
-		this.usersModel = models.Address;
+		this.usersModel = models.Country;
 	};
 
 	async find() {
-		const users = await this.usersModel.findAll({
-			include: ['state']
-		});
-		return users;
-	};
-
-	async findByUser(userId) {
-		const users = await this.usersModel.findAll({
-			where: {
-				user_id: userId,
-			},
-			include: ['state']
-		});
+		const users = await this.usersModel.findAll();
 		return users;
 	};
 
@@ -50,4 +38,4 @@ class AddressService {
 	};
 };
 
-module.exports = AddressService;
+module.exports = CountryService;

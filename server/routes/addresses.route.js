@@ -13,16 +13,23 @@ const service = new AddressService();
 
 // Get all addresses
 router.get('/',
-	validatorHandler(getAddressByUserIdSchema, 'body'),
 	async (req, res, next) => {
 		try {
-			if (req.body.user_id) {
-				const addresses = await service.findByUser(req.body.user_id);
-				res.json(addresses);
-			} else {
-				const addresses = await service.find();
-				res.json(addresses);
-			}
+			const addresses = await service.find();
+			res.json(addresses);
+		} catch(error) {
+			next(error);
+		};
+	}
+);
+
+// Get all addresses
+router.get('/by-user/:user_id',
+	validatorHandler(getAddressByUserIdSchema, 'params'),
+	async (req, res, next) => {
+		try {
+			const addresses = await service.findByUser(req.params.user_id);
+			res.json(addresses);
 		} catch(error) {
 			next(error);
 		};
@@ -43,15 +50,14 @@ router.get('/:id',
 	},
 );
 
-// Create a user
+// Create a address
 router.post('/',
 	validatorHandler(createAddressSchema, 'body'),
 	async (req, res, next) => {
 		try {
 			const { body } = req;
-			if(req.file) body.img_profile = req.file.path;
-			const newUser = await service.create(body);
-			res.json(newUser);
+			const newAddress = await service.create(body);
+			res.json(newAddress);
 		}catch(error) {
 			next(error);
 		};

@@ -67,6 +67,7 @@ const AddressSchema = {
 class Address extends Model {
 	static associate(models) {
 		this.belongsTo(models.User, { as: 'user', foreignKey: 'user_id' });
+		this.belongsTo(models.State, { as: 'state', foreignKey: 'state_id' });
 	};
 
 	static config(sequelize) {

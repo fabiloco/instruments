@@ -3,22 +3,19 @@ const { models } = require('../libs/sequilize');
 
 class AddressService {
 	constructor() {
-		this.usersModel = models.Address;
+		this.usersModel = models.State;
 	};
 
 	async find() {
-		const users = await this.usersModel.findAll({
-			include: ['state']
-		});
+		const users = await this.usersModel.findAll();
 		return users;
 	};
 
-	async findByUser(userId) {
+	async findByCountryId(country_id) {
 		const users = await this.usersModel.findAll({
 			where: {
-				user_id: userId,
-			},
-			include: ['state']
+				country_id,
+			}
 		});
 		return users;
 	};

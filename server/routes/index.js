@@ -7,6 +7,8 @@ const productsRoute = require('./products.route');
 const categoriesRoute = require('./categories.route');
 const cartRoute = require('./cart.route');
 const cartItemsRoute = require('./cart-items.route');
+const statesRoute = require('./states.route');
+const countriessRoute = require('./country.route');
 
 const routerApi = (app) => {
 	const router = express.Router();
@@ -18,6 +20,8 @@ const routerApi = (app) => {
 	router.use('/categories', categoriesRoute);
 	router.use('/cart', cartRoute);
 	router.use('/cart-item', cartItemsRoute);
+	router.use('/states', statesRoute);
+	router.use('/countries', countriessRoute);
 };
 
 module.exports = { routerApi };

@@ -49,8 +49,8 @@ const Profile = () => {
                         <TabList>
                             <Tab>Perfil</Tab>
                             <Tab>Direcciones</Tab>
-                            <Tab>Metodos de pago</Tab>
-                            <Tab>Historial de compra</Tab>
+                            <Tab isDisabled={true}>Metodos de pago</Tab>
+                            <Tab isDisabled={true}>Historial de compra</Tab>
                         </TabList>
 
                         <TabPanels>

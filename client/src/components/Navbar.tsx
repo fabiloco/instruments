@@ -112,12 +112,12 @@ const Navbar = () => {
                     >
                         Home
                     </Link>
-                    <Link
+                    {/* <Link
                         className="mr-3 text-black transition-all border-b-2 hover:border-b-4 text-md border-b-black"
                         to="/products"
                     >
                         Nuestros productos
-                    </Link>
+                    </Link> */}
 
                     <Link
                         className="mr-3 text-black transition-all border-b-2 hover:border-b-4 text-md border-b-black"

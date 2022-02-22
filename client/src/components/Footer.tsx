@@ -11,7 +11,7 @@ const Footer = () => {
 					target="_blank"
 					className="flex items-center mb-4 sm:mb-0"
 				>
-					<div className="font-bold text-xl mr-6">
+					<div className="mr-6 text-xl font-bold">
 						<img className="h-32" src={logo} alt="logo"/>
 					</div>
 				</a>
@@ -25,12 +25,12 @@ const Footer = () => {
 						</Link>
 					</li>
 					<li>
-						<Link
+						{/* <Link
 							to="/products"
 							className="mr-4 text-sm text-gray-500 hover:underline md:mr-6 dark:text-gray-400"
 						>
 							Productos
-						</Link>
+						</Link> */}
 					</li>
 					<li>
 					<Link

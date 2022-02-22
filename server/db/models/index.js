@@ -39,16 +39,22 @@ const setupModels = (sequilize) => {
 	CartItemLog.init(CartItemLogSchema, CartItemLog.config(sequilize));
 	ProductLog.init(ProductLogSchema, ProductLog.config(sequilize));
 
+	User.associate(sequilize.models);
 	Country.associate(sequilize.models);
 	State.associate(sequilize.models);
-	User.associate(sequilize.models);
 	Address.associate(sequilize.models);
+	Payment.associate(sequilize.models);
+	Cart.associate(sequilize.models);
+	PaymentDetails.associate(sequilize.models);
+	OrderHistorial.associate(sequilize.models);
 	Category.associate(sequilize.models);
 	Discount.associate(sequilize.models);
 	Inventory.associate(sequilize.models);
-	Cart.associate(sequilize.models);
 	Product.associate(sequilize.models);
-	OrderHistorial.associate(sequilize.models);
+	CartItem.associate(sequilize.models);
+	OrderItem.associate(sequilize.models);
+	CartItemLog.associate(sequilize.models);
+	ProductLog.associate(sequilize.models);
 };
 
 module.exports = { setupModels };

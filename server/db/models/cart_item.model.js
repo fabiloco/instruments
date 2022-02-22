@@ -47,8 +47,11 @@ const CartItemSchema = {
 };
 
 class CartItem extends Model {
-	static associate() {
-
+	static associate(models) {
+		this.belongsTo(models.Product, {
+			as: 'product',
+			foreignKey: 'product_id'
+		});
 	};
 
 	static config(sequelize) {

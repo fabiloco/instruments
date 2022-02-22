@@ -23,7 +23,7 @@ interface Discount {
     description: string;
 }
 
-interface Product {
+export interface Product {
     id: number;
     discount_id: number;
     inventory_id: number;
@@ -65,9 +65,9 @@ const Products = () => {
     }, [id]);
 
     return (
-        <div className="pt-28 bg-slate-50">
-            <div className="bg-[#FFCF9B] py-6 px-4">
-                <Heading size={"2xl"}>Productos</Heading>
+        <div className="pt-28 bg-slate-50 pb-28">
+            <div className="bg-[#FFCF9B] py-8 px-6">
+                <Heading size={"3xl"} fontWeight={"medium"} fontFamily={"heading"}>Productos</Heading>
             </div>
 
             <Container maxW="container.lg" mt={"12"}>
@@ -76,9 +76,12 @@ const Products = () => {
 							<Heading size={"sm"}>Categorias</Heading>
 						</div>
 					</div> */}
-
+                <div className="flex items-center">
+                    <div className="w-16 h-2 bg-[#FFCF9B] mr-4"></div>
+                    <p className="text-xl">{productsState.products.length} resultados</p>
+                </div>
                 <div className="w-full mt-12">
-                    <Grid templateColumns="repeat(3, 1fr)" gap={8}>
+                    <Grid templateColumns="repeat(3, 1fr)">
                         {productsState.products.map((element, i) => {
                             return (
                                 <GridItem key={i}>
@@ -88,9 +91,9 @@ const Products = () => {
                         })}
                     </Grid>
                 </div>
-                <div className="flex items-center justify-center w-full mt-24">
+                {/* <div className="flex items-center justify-center w-full mt-24">
                     <Pagination />
-                </div>
+                </div> */}
             </Container>
         </div>
     );
@@ -105,9 +108,9 @@ const Product = (props: ProductProps) => {
         <Link to={`/product/${props.data.id}`}>
             <div className="w-full bg-white border border-slate-100">
 				<img className="object-contain w-full h-64" src={props.data.img_url} alt={props.data.name}/>
-                <div className="p-4">
+                <div className="flex flex-col p-4 justify-evenly h-36">
                     <p className="mb-2 font-bold">{props.data.name}</p>
-                    <p className="mb-2 font-bold text-red-500">$ COP {props.data.price}</p>
+                    <p className="mb-2 text-lg font-bold text-red-500">$ COP {props.data.price}</p>
                     {
                         props.data.inventory.quantity > 0 ?(
                             <div className="flex items-center">

@@ -39,3 +39,14 @@ export const getProducts = async () => {
 		console.log("Error fetching login: ", err.response);
 	}
 };
+
+export const getProduct = async (id: string) => {
+	try {
+		const res = await axios.get(`${config.API_URL}/api/v1/products/${id}`, {
+			headers: config.headers,
+		});
+		return res.data;
+	} catch (err: any) {
+		console.log("Error fetching login: ", err.response);
+	}
+};
